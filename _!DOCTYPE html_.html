@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Adivinhe o Número</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f0f0f0; }
+        input { padding: 10px; font-size: 16px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        #resultado { margin-top: 20px; font-size: 18px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>🎮 Adivinhe o Número!</h1>
+    <p>Escolha um número entre 1 e 20</p>
+    
+    <input type="number" id="chute" min="1" max="20">
+    <button onclick="verificarNumero()">Chutar</button>
+    
+    <p id="resultado"></p>
+    
+    <script>
+        const numeroSecreto = Math.floor(Math.random() * 20) + 1;
+        let tentativas = 0;
+
+        function verificarNumero() {
+            const chute = Number(document.getElementById("chute").value);
+            tentativas++;
+            const resultado = document.getElementById("resultado");
+
+            if (chute === numeroSecreto) {
+                resultado.textContent = `🎉 Parabéns! Você acertou em ${tentativas} tentativas!`;
+            } else if (chute > numeroSecreto) {
+                resultado.textContent = "⬇️ Tente um número menor!";
+            } else if (chute < numeroSecreto) {
+                resultado.textContent = "⬆️ Tente um número maior!";
+            }
+        }
+    </script>
+</body>
+</html>
